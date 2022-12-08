@@ -58,5 +58,42 @@ public class MethodClass {
                 .map(m -> m.name)
                 .collect(Collectors.toList());
     }
+
+    //4
+    public List<Integer> getAllYearsOfCreationOfManufacturers(Set<Manufacturer> manufacturers){
+        return manufacturers.stream()
+                .map(m -> m.yearOfCreation)
+                .collect(Collectors.toList());
+    }
+
+    //5
+    public List<String> getAllModelsNames(Set<Manufacturer> manufacturers){
+        return manufacturers.stream()
+                .flatMap(x -> x.models.stream().map(m -> m.name))
+                .collect(Collectors.toList());
+    }
+
+    //6
+    public List<Integer> getListOfProductionStartYears(Set<Manufacturer> manufacturers){
+        return manufacturers.stream()
+                .flatMap(x -> x.models.stream().map(m -> m.productionStartYear))
+                .collect(Collectors.toList());
+    }
+
+    //7
+    public List<String> getAllCarNames(Set<Manufacturer> manufacturers){
+        return manufacturers.stream()
+                .flatMap(x -> x.models.stream()
+                        .flatMap(m -> m.cars.stream().map(n -> n.name)))
+                .collect(Collectors.toList());
+    }
+
+    //8
+    public List<String> getAllCarDescriptions(Set<Manufacturer> manufacturers){
+        return manufacturers.stream()
+                .flatMap(x -> x.models.stream()
+                        .flatMap(m -> m.cars.stream().map(n -> n.description)))
+                .collect(Collectors.toList());
+    }
 }
 
